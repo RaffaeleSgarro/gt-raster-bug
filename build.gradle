@@ -1,0 +1,26 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url "https://repo.osgeo.org/repository/release" }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.geotools:gt-process-raster:25.0'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootJar {
+    archiveFileName = 'gt-raster-bug.jar'
+    doLast {
+        logger.quiet("Generated executable JAR at ${archiveFile.get().asFile.absolutePath}")
+    }
+}
